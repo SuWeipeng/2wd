@@ -27,6 +27,7 @@
 #include "nrf_mavlink.h"
 #include "motors.h"
 #include "mode.h"
+#include "stm32_hal_legacy.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,7 +53,7 @@ TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 
 /* USER CODE BEGIN PV */
-
+uint32_t count = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -119,6 +120,9 @@ int main(void)
   NRF24_enableAckPayload();
   
   Motors_Init();
+  
+  HAL_TIM_Base_Start(&htim3);
+  HAL_TIM_Base_Start(&htim4);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -126,6 +130,8 @@ int main(void)
   while (1)
   {
     update_mavlink();
+    
+    count = __HAL_TIM_GetCounter(&htim3);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

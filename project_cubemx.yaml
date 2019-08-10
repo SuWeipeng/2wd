@@ -19,13 +19,20 @@ common:
     Drivers:
     - Drivers/STM32F1xx_HAL_Driver/Src
     - Drivers/nRF24L01_Driver/Src
-    IDE:
-    - IDE/IAR
     Src:
     - Src
   target:
   - stm32f103c8
 tool_specific:
+  uvision5:
+    macros:
+    - USE_HAL_DRIVER
+    - STM32F103xB
+    sources:
+      StartUp:
+      - IDE/MDK5
+    linker_file:
+    - IDE/MDK5/2wd.sct
   iar_arm:
     macros:
     - USE_HAL_DRIVER
