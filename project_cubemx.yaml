@@ -1,0 +1,32 @@
+common:
+  includes:
+  - Drivers
+  - Drivers/CMSIS
+  - Drivers/CMSIS/Device
+  - Drivers/CMSIS/Device/ST
+  - Drivers/CMSIS/Device/ST/STM32F1xx
+  - Drivers/CMSIS/Device/ST/STM32F1xx/Include
+  - Drivers/CMSIS/Include
+  - Drivers/STM32F1xx_HAL_Driver
+  - Drivers/STM32F1xx_HAL_Driver/Inc
+  - Drivers/STM32F1xx_HAL_Driver/Inc/Legacy
+  - Inc
+  sources:
+    Drivers:
+    - Drivers/STM32F1xx_HAL_Driver/Src
+    IDE:
+    - IDE/IAR
+    Src:
+    - Src
+  target:
+  - stm32f103c8
+tool_specific:
+  iar_arm:
+    macros:
+    - USE_HAL_DRIVER
+    - STM32F103xB   
+    sources:
+      StartUp:
+      - IDE/IAR
+    linker_file:
+    - IDE/IAR/stm32f103xb_flash.icf
